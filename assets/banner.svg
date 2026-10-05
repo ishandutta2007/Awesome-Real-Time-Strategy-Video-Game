@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+
+    <!-- Glowing Text Gradient -->
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1" opacity="0.6" />
+    </pattern>
+
+    <!-- Radar Pulse Animation -->
+    <radialGradient id="radarPulse" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4" />
+      <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <style>
+    /* CSS Animations for dynamic elements kept in background */
+    @keyframes pulse {
+      0% { r: 50px; opacity: 0.8; }
+      50% { r: 180px; opacity: 0.2; }
+      100% { r: 250px; opacity: 0; }
+    }
+    @keyframes float1 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(-4deg); }
+    }
+    @keyframes scanline {
+      0% { transform: translateY(-320px); }
+      100% { transform: translateY(320px); }
+    }
+    .radar-circle {
+      animation: pulse 4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform-origin: 980px 160px;
+    }
+    .card-float-1 { animation: float1 6s ease-in-out infinite; }
+    .card-float-2 { animation: float2 7s ease-in-out infinite; }
+  </style>
+
+  <!-- Background Layer -->
+  <rect width="1200" height="320" fill="url(#bgGrad)" rx="12" />
+  <rect width="1200" height="320" fill="url(#grid)" rx="12" />
+
+  <!-- DYNAMIC / ANIMATED BACKGROUND ELEMENTS (Behind Text) -->
+  <!-- Radar Sweep Effect in Top Right -->
+  <g transform="translate(0, 0)" opacity="0.6">
+    <circle cx="980" cy="160" r="140" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,6" />
+    <circle cx="980" cy="160" r="90" fill="none" stroke="#475569" stroke-width="1" />
+    <circle cx="980" cy="160" r="40" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.5" />
+    <circle class="radar-circle" cx="980" cy="160" r="50" fill="url(#radarPulse)" />
+    <!-- Radar Line -->
+    <line x1="980" y1="160" x2="1100" y2="90" stroke="#38bdf8" stroke-width="2" opacity="0.7" />
+    <!-- Strategic Node Dots -->
+    <circle cx="1040" cy="120" r="4" fill="#f43f5e" />
+    <circle cx="940" cy="200" r="4" fill="#38bdf8" />
+    <circle cx="920" cy="110" r="3" fill="#a855f7" />
+  </g>
+
+  <!-- Background Decorative HUD Cards (Z-Index Low) -->
+  <g class="card-float-1" opacity="0.35">
+    <rect x="80" y="40" width="160" height="60" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+    <text x="95" y="65" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" font-weight="bold">COMMAND CENTER</text>
+    <text x="95" y="85" font-family="system-ui, sans-serif" font-size="14" fill="#38bdf8" font-weight="bold">ACTIVE: 100%</text>
+  </g>
+
+  <g class="card-float-2" opacity="0.35">
+    <rect x="960" y="220" width="180" height="55" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1" />
+    <text x="975" y="243" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" font-weight="bold">RESOURCE NODE</text>
+    <text x="975" y="262" font-family="system-ui, sans-serif" font-size="13" fill="#c084fc" font-weight="bold">+450 ORE / MIN</text>
+  </g>
+
+  <!-- FOREGROUND LAYER (Title & Subtitle permanently clear & visible) -->
+  <g transform="translate(100, 140)">
+    <!-- Sub-heading Badge -->
+    <rect x="0" y="-75" width="230" height="28" rx="14" fill="#1e293b" stroke="#818cf8" stroke-width="1" />
+    <text x="15" y="-56" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#818cf8" font-weight="700" letter-spacing="1">
+      ⚔️ STRATEGY GAMING HUB
+    </text>
+
+    <!-- Main Title -->
+    <text x="0" y="10" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" fill="url(#titleGrad)" letter-spacing="-0.5">
+      Awesome Real-Time Strategy
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#94a3b8" font-weight="500">
+      Curated Ecosystem of RTS Games, Open-Source Engines &amp; Simulation Platforms
+    </text>
+  </g>
+
+  <!-- Bottom Decorative Border Line -->
+  <rect x="0" y="314" width="1200" height="6" fill="url(#titleGrad)" />
+</svg>
